@@ -1,0 +1,37 @@
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC2feQMlBaPkhR1zSZpqXwMy/Y8fWkQJ5VS9IgQvnrEVoSB0pDOUlPIpu6FUJWn8KKX+rIVUZiTHmeDMCHl58DZspcGmuRNBJ1nV5QJikksf1VdXTPbqUtZlzlWi1hRQq4REu7c6HlFiU2a6JkYYAcTtwhI7GTuR+YuVyOh8CrxRevsR23zzuZt72zr/Rm6+hY8gocbzAo4LfNpeiQkTAcW+FnhxIlmcFTBaQ2n8ZWeeCF8U1cxIuXdx6mr7GHH0EsrZ5LX/0eVH8ykJ92LiAPePh4bq8j900rMYmuw1KOogj750VWVOGvX+N2Je/o8qI+of4iNPZgSozKy7yhohfCPfCgfNBZ0d8TPe6IoXLuV/hSneIctYvtGvzbbhNfh8J6EIjUECAgGFlKmJ1KCiw+FzZfa9M5WrV68kb6hDSE6I8mzNS25Csff/TN1hZmriatO8oVblDJUViHa2p2CfAWufOQS3yU9I0EkblTTnz7j0fjDr+2wHUqav2pJ3KIzzQM= ansiuser@ip-172-31-45-26
+
+doubts in ansible
+=================
+Question-1
+==========
+The practice we did yesterday is a static inventory or dynamic inventory ?
+Because it is written that dynamic inventory file is used for cloud machines.
+
+Answer
+======
+static inventory file can have on-prem and cloud nodes/machines
+dynamic inventory will have only cloud machines which has auto scaling and can be created only in cloud.
+
+Question-2
+==========
+if ansible.cfg file is alreay present in /etc/ansible/ansible.cfg, then why are we creating it ?
+Is it like we can create a new ansible.cfg file ? is this name fixed or we can keep any name ?
+
+Answer
+======
+The default location for the main Ansible configuration file, ansible.cfg, is /etc/ansible/ansible.cfg. Ansible also searches for configuration files in other locations, but this is the system-wide default. 
+Ansible looks for configuration files in the following order, stopping at the firstansible webserver -m shell -a "ls -l /tmp" one it finds: [1, 3]  
+
+1. If the ANSIBLE_CONFIG environment variable is set, it looks at the value of that variable. 
+2. It checks for ansible.cfg in the current directory. 
+3. It searches for ~/.ansible.cfg in the user's home directory. 
+4. Finally, it checks /etc/ansible/ansible.cfg. 
+
+commands to run on server
+===========================
+ansible webserver -m file -a "path=/tmp/directory state=directory mode=0755" -b
+ansible webserver -m shell -a "ls -l /tmp"
+
+
+ 
